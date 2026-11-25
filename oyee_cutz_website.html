@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071b20">
+<title>oyee_cutz | Grayscale Comic Cutouts</title>
+<style>
+:root{color-scheme:dark;--bg:#071b20;--card:#102a30;--teal:#27d3c2;--muted:#a9c0c3}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,system-ui,Arial,sans-serif;background:radial-gradient(circle at 50% 0,#16434a 0,#071b20 52%);color:#f4fbfb;display:flex;align-items:center;justify-content:center;padding:28px}
+.wrap{width:min(100%,620px)}.brand{text-align:center;margin-bottom:24px}.brand small{letter-spacing:.28em;color:var(--teal);font-weight:800}.brand h1{font-size:clamp(30px,7vw,48px);line-height:1.05;margin:12px 0 8px}.brand p{color:var(--muted);margin:0}
+.card{background:rgba(16,42,48,.92);border:1px solid rgba(39,211,194,.25);border-radius:22px;padding:25px;box-shadow:0 24px 70px #0007;margin:16px 0}
+.label{font-size:13px;letter-spacing:.14em;color:var(--teal);font-weight:800;text-transform:uppercase}
+.prompt{white-space:pre-wrap;line-height:1.7;color:#e1eeee;background:#081d22;border:1px solid #24464b;border-radius:14px;padding:17px;margin:14px 0 18px;font-size:15px}
+button,a.btn{width:100%;display:flex;justify-content:center;align-items:center;gap:10px;border:0;border-radius:13px;padding:15px 18px;font-size:16px;font-weight:800;text-decoration:none;cursor:pointer;transition:.2s}
+.copy{background:var(--teal);color:#052326}.copy:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.install{background:#f1fbfa;color:#082329}.install:hover{background:#d5f5f1;transform:translateY(-1px)}
+.note{text-align:center;color:var(--muted);font-size:13px;margin:12px 0 0}.status{min-height:20px;text-align:center;color:var(--teal);font-size:13px;margin-top:10px}
+footer{text-align:center;color:#78999d;font-size:12px;margin-top:22px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="brand">
+    <small>O Y E E _ C U T Z</small>
+    <h1>GRAYSCALE<br>COMIC CUTOUTS</h1>
+    <p>Copy the prompt. Create your own comic-style portrait.</p>
+  </header>
+  <section class="card">
+    <div class="label">01 / Copy your prompt</div>
+    <div class="prompt" id="prompt">Convert my photo into a grayscale comic cutout style.
+
+Create a 3×3 grid with 9 different poses of the same person. Use a dark teal background, black-and-white comic effect, sharp outlines, and realistic shading. Add the title "GRAYSCALE COMIC CUTOUTS" at the top.
+
+Preserve my original face, hairstyle and identity.
+
+High-quality HD output.</div>
+    <button class="copy" id="copyBtn" type="button">▣ &nbsp; Copy Prompt</button>
+    <div class="status" id="status" aria-live="polite"></div>
+  </section>
+  <section class="card">
+    <div class="label">02 / Get the app</div>
+    <p style="color:var(--muted);line-height:1.6;margin:12px 0 18px">Install or open the app using the link below.</p>
+    <a class="btn install" href="https://t.me/c/2138847088/2003" target="_blank" rel="noopener noreferrer">↗ &nbsp; Open App Link</a>
+    <p class="note">If the link does not open, make sure Telegram is installed and you have access to the linked channel.</p>
+  </section>
+  <footer>© oy ee_cutz · Create. Edit. Share.</footer>
+</main>
+<script>
+const promptText = document.getElementById('prompt').innerText;
+document.getElementById('copyBtn').addEventListener('click', async () => {
+ const status = document.getElementById('status');
+ try {
+  await navigator.clipboard.writeText(promptText);
+  status.textContent = '✓ Prompt copied! Paste it into your AI image tool.';
+ } catch(e) {
+  const area=document.createElement('textarea'); area.value=promptText; document.body.appendChild(area);
+  area.select(); document.execCommand('copy'); area.remove();
+  status.textContent = '✓ Prompt copied! Paste it into your AI image tool.';
+ }
+});
+</script>
+</body>
+</html>
